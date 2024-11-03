@@ -3,11 +3,12 @@ import './App.css';
 import React, {useState} from 'react';
 import Forms from './forms.js';
 import TodoFilter from './todoFilter.js';
-
+import ListTodo from "./listTodo";
 
 
 function App() {
 
+  const [filter, setFilter] =useState('All');
 
 
   const [todo, setTodo]=useState([
@@ -31,12 +32,28 @@ function App() {
   setTodo([...todo, newTodo]);
   console.log(todo);
  }
+
+ const deleteTodo=(id)=>{
+  const newList = todo.filter((todo) => todo.id !== id);
+  setTodo(newList);
+ }
+
+ const on_check=(id)=>{
+  const updateChecked = todo.map((todo)=>{
+    if (todo.id === id) {
+      return {...todo, completed: !todo.completed}
+    }
+    return todo;  
+  });
+  setTodo(updateChecked);
+ }
  
   return (
     <div className='todoapp stack-large'>
      <h1>TodoMatic</h1>
-     <Forms add_todo={add_todo} todo={todo}/>
-    <TodoFilter todo={todo} />
+     <Forms add_todo={add_todo} todo={todo} />
+     <TodoFilter todo={todo} filter={filter} setFilter={setFilter} />
+     <ListTodo todo={todo} filter={filter} deleteTodo={deleteTodo} on_check={on_check}/>
     </div>
   );
 }

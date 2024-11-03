@@ -1,28 +1,25 @@
 import React from "react";
-import { useState } from "react";
-import ListTodo from "./listTodo";
 
-function TodoFilter({todo }) {
 
-    const [filter, setFilter] =useState('All');
+function TodoFilter({setFilter, filter}) {
 
- 
+   
 
     return (
-        <div>
+       
         <div className="filters btn-group stack-exception">
-            <button type="button" className=" btn toggle-btn">
-                <span onClick={() => setFilter('All')}>All</span>
+            <button type="button" className=" btn toggle-btn" aria-pressed={filter==='All'} onClick={() => setFilter('All')}>
+                <span >All</span>
             </button>
-            <button type="button" className=" btn toggle-btn">
-                <span onClick={() => setFilter('Active')}>Active</span>
+            <button type="button" className=" btn toggle-btn" onClick={() => setFilter('Active')} aria-pressed={filter==='Active'}>
+                <span >Active</span>
             </button>
-            <button type="button" className=" btn toggle-btn">
-                <span onClick={() => setFilter('Completed')}>Completed</span>
+            <button type="button" className=" btn toggle-btn" onClick={() => setFilter('Completed')} aria-pressed={filter==='Completed'}>
+                <span >Completed</span>
             </button>
         </div>
-        <ListTodo filter={filter} todo={todo}/>
-        </div>
+       
+    
 );
 }
 

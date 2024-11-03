@@ -35,6 +35,7 @@ function Forms( {add_todo, todo} ) {
             name="text"
             autoComplete="off"
             onChange={(e)=>setInput(e.target.value)}
+            value={input}
         />
         <button type="submit" className="btn btn__primary btn__lg">
             Add
