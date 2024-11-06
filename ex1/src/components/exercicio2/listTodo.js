@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 
 function ListTodo ({todo, filter, deleteTodo, on_check}) {
 
@@ -139,3 +141,12 @@ const handleSave=(id)=>{
 
 
 export default ListTodo;
+
+
+ListTodo.propTypes = {
+    todo: PropTypes.array.isRequired,
+    filter: PropTypes.string.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    on_check: PropTypes.func.isRequired
+}
+

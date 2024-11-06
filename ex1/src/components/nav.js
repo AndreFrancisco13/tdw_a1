@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = styled.nav`
 background-color: #722;
@@ -19,14 +20,16 @@ const NavItem = styled.li`
     display: inline;
 `;
 
-const NavLink = styled(Link)`
+const NavLinkStyled = styled(NavLink)`
    display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+     margin: 1rem;
 
    &.active {
+    margin: 1rem;
     border: 2px solid white;
     border-radius: 4px;
   }
@@ -50,17 +53,17 @@ export default function Nav() {
     return (
         <Navbar >
           <NavList >
-            <NavItem >
-              <NavLink to="/" exact activeClassName="active">Home</NavLink>
+            <NavItem>
+              <NavLinkStyled to="/" end  >Home</NavLinkStyled>
             </NavItem>
             <NavItem >
-              <NavLink to="/exercicio1" activeClassName="active" >Exercicio 1</NavLink>
+              <NavLinkStyled to="/exercicio1"  >Exercicio 1</NavLinkStyled>
             </NavItem>
             <NavItem >
-              <NavLink to="/exercicio2" activeClassName="active"> Exercicio 2</NavLink>
+              <NavLinkStyled to="/exercicio2" > Exercicio 2</NavLinkStyled>
             </NavItem>
             <NavItem >
-              <NavLink to="/about" activeClassName="active">About</NavLink>
+              <NavLinkStyled to="/about">About</NavLinkStyled>
             </NavItem>
           </NavList>
         </Navbar>

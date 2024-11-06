@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 
 function TodoFilter({setFilter, filter}) {
@@ -25,3 +26,9 @@ function TodoFilter({setFilter, filter}) {
 
 
 export default TodoFilter;
+
+
+TodoFilter.propTypes = {
+    setFilter: PropTypes.func.isRequired,
+    filter: PropTypes.string.isRequired
+}

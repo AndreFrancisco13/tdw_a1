@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import PropTypes from 'prop-types';
 
 
 function Forms( {add_todo, todo} ) {
@@ -44,3 +44,11 @@ function Forms( {add_todo, todo} ) {
     );
     }
     export default Forms;
+
+
+    Forms.prototypes = {
+        add_todo: PropTypes.func.isRequired,
+        todo: PropTypes.array.isRequired
+    }
+
+    

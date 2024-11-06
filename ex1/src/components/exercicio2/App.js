@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import Forms from './forms.js';
 import TodoFilter from '../exercicio2/todoFilter.js';
 import ListTodo from "./listTodo";
-
+import PropTypes from 'prop-types';
 
 function Exercicio2() {
 
@@ -55,3 +55,13 @@ function Exercicio2() {
 }
 
 export default Exercicio2;
+
+
+
+Exercicio2.prototypes = {
+ todo: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  add_todo: PropTypes.func.isRequired,
+
+}
