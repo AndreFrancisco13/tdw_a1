@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Forms from './forms.js';
 import TodoFilter from './todoFilter.js';
 import ListTodo from "./listTodo";
@@ -10,24 +10,20 @@ function App() {
 
   const [filter, setFilter] =useState('All');
 
+  const [todo, setTodo] = useState(() => {
+    const savedTodo = localStorage.getItem('todo');
+    return savedTodo ? JSON.parse(savedTodo) : [
+      { id: 'todo-0', name: 'Eat', completed: true },
+      { id: 'todo-1', name: 'Sleep', completed: false },
+      { id: 'todo-2', name: 'Repeat', completed: false },
+    ];
+  });
 
-  const [todo, setTodo]=useState([
-    {
-    id: 'todo-0',
-    name: 'Eat',
-    completed: true
-    },
-    {id: 'todo-1',  
-    name: 'Sleep',
-    completed: false
-    },
-    {
-    id: 'todo-2',
-    name: 'Repeat',
-    completed: false
-    },
-  ]);
-  
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(todo));
+  }, [todo]);
+
+ 
  const add_todo=(newTodo)=>{
   setTodo([...todo, newTodo]);
   console.log(todo);
