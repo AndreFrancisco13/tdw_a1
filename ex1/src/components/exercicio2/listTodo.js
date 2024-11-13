@@ -2,9 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { TodoContext } from "./context";
+import { useContext } from "react";
 
+function ListTodo () {
 
-function ListTodo ({todo, filter, deleteTodo, on_check}) {
+const {todo, setTodo, filter, deleteTodo, on_check} = useContext(TodoContext);
 
  const [results, setResults] = useState([]);
  const [editingId, setEditingId] = useState(null);
@@ -43,7 +46,7 @@ const handleCancel=()=>{
 }
 
 const handleSave=(id)=>{
-    if (newName.trim() ==! '' || newName.trim().length > 3) {
+    if (newName.trim() !== '' && newName.trim().length > 3) {
         const updatedTodo = todo.map((todo)=>{
             if (todo.id === id) {
                 return {...todo, name: newName}
@@ -140,13 +143,9 @@ const handleSave=(id)=>{
         }
 
 
+
 export default ListTodo;
 
 
-ListTodo.propTypes = {
-    todo: PropTypes.array.isRequired,
-    filter: PropTypes.string.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    on_check: PropTypes.func.isRequired
-}
+
 

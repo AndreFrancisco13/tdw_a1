@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { TodoContext } from "./context";
+import { useContext } from "react";
 
+function TodoFilter() {
 
-function TodoFilter({setFilter, filter}) {
-
-   
+   const {filter, setFilter} = useContext(TodoContext);
 
     return (
        
@@ -28,7 +29,4 @@ function TodoFilter({setFilter, filter}) {
 export default TodoFilter;
 
 
-TodoFilter.propTypes = {
-    setFilter: PropTypes.func.isRequired,
-    filter: PropTypes.string.isRequired
-}
+

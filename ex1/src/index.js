@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Exercicio1 from './components/exercicio1/App';
-import Exercicio2 from './components/exercicio1/App';
+import Exercicio2 from './components/exercicio2/App';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import About from './components/about';
 import Home from './components/home'; 

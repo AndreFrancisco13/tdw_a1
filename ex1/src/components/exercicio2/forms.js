@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import { TodoContext } from "./context";
+import { useContext } from "react";
 
+function Forms( ) {
 
-function Forms( {add_todo, todo} ) {
+    const {add_todo, todo} = useContext(TodoContext);
 
     const [input, setInput] = useState('');
 
@@ -43,12 +46,12 @@ function Forms( {add_todo, todo} ) {
         </form>
     );
     }
+
+ 
+
     export default Forms;
 
 
-    Forms.prototypes = {
-        add_todo: PropTypes.func.isRequired,
-        todo: PropTypes.array.isRequired
-    }
+  
 
     

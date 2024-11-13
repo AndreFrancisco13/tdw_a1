@@ -1,55 +1,55 @@
 
 import './App.css';
 import React, {useEffect, useState} from 'react';
-import Forms from './forms.js';
-import TodoFilter from '../exercicio2/todoFilter.js';
-import ListTodo from "./listTodo";
+import Formulario from './formulario.js';
+import FazerFilter from '../exercicio1/fazerFilter.js';
+import ListFazer from "./listFazer.js";
 
 
 function Exercicio1() {
 
-  const [filter, setFilter] =useState('All');
+  const [filtrar, setFiltrar] =useState('All');
 
-  const [todo, setTodo] = useState(() => {
-    const savedTodo = localStorage.getItem('todo');
-    return savedTodo ? JSON.parse(savedTodo) : [
-      { id: 'todo-0', name: 'Eat', completed: true },
-      { id: 'todo-1', name: 'Sleep', completed: false },
-      { id: 'todo-2', name: 'Repeat', completed: false },
+  const [fazer, setFazer] = useState(() => {
+    const salvarFazer = localStorage.getItem('fazer');
+    return salvarFazer ? JSON.parse(salvarFazer) : [
+      { id: 'fazer-0', name: 'Eat', completed: true },
+      { id: 'fazer-1', name: 'Sleep', completed: false },
+      { id: 'fazer-2', name: 'Repeat', completed: false },
     ];
   });
 
   useEffect(() => {
-    localStorage.setItem('todo', JSON.stringify(todo));
-  }, [todo]);
+    localStorage.setItem('fazer', JSON.stringify(fazer));
+  }, [fazer]);
 
  
- const add_todo=(newTodo)=>{
-  setTodo([...todo, newTodo]);
-  console.log(todo);
+ const add_fazer=(newFazer)=>{
+  setFazer([...fazer, newFazer]);
+  console.log(fazer);
  }
 
- const deleteTodo=(id)=>{
-  const newList = todo.filter((todo) => todo.id !== id);
-  setTodo(newList);
+ const deleteFazer=(id)=>{
+  const newList = fazer.filter((fazer) => fazer.id !== id);
+  setFazer(newList);
  }
 
  const on_check=(id)=>{
-  const updateChecked = todo.map((todo)=>{
-    if (todo.id === id) {
-      return {...todo, completed: !todo.completed}
+  const updateChecked = fazer.map((fazer)=>{
+    if (fazer.id === id) {
+      return {...fazer, completed: !fazer.completed}
     }
-    return todo;  
+    return fazer;  
   });
-  setTodo(updateChecked);
+  setFazer(updateChecked);
  }
  
   return (
     <div className='todoapp stack-large'>
-     <h1>TodoMatic</h1>
-     <Forms add_todo={add_todo} todo={todo} />
-     <TodoFilter todo={todo} filter={filter} setFilter={setFilter} />
-     <ListTodo todo={todo} filter={filter} deleteTodo={deleteTodo} on_check={on_check}/>
+     <h1>fazerMatic</h1>
+     <Formulario add_fazer={add_fazer} fazer={fazer} />
+     <FazerFilter filtrar={filtrar} setFiltrar={setFiltrar} />
+     <ListFazer fazer={fazer} filtrar={filtrar} deleteFazer={deleteFazer} on_check={on_check}/>
     </div>
   );
 }

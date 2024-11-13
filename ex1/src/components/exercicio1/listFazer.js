@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function ListTodo ({todo, filter, deleteTodo, on_check}) {
+function ListFazer ({fazer, filtrar, deleteFazer, on_check, setFazer}) {
 
  const [results, setResults] = useState([]);
  const [editingId, setEditingId] = useState(null);
@@ -11,51 +11,50 @@ function ListTodo ({todo, filter, deleteTodo, on_check}) {
 
  useEffect(() => {
     let filteredResults = [];
-    if (filter === 'All') {
-        filteredResults = todo;
-    } else if (filter === 'Active') {
-        filteredResults = todo.filter((todo) => !todo.completed);
-    } else if (filter === 'Completed') {
-        filteredResults = todo.filter((todo) => todo.completed);
+    if (filtrar === 'All') {
+        filteredResults = fazer;
+    } else if (filtrar === 'Active') {
+        filteredResults = fazer.filter((fazer) => !fazer.completed);
+    } else if (filtrar === 'Completed') {
+        filteredResults = fazer.filter((fazer) => fazer.completed);
     }
 
     if (searching !== '') {
-        filteredResults = filteredResults.filter((todo) => 
-            todo.name.toLowerCase().includes(searching.toLowerCase())
+        filteredResults = filteredResults.filter((fazer) => 
+            fazer.name.toLowerCase().includes(searching.toLowerCase())
         );
     }
 
     setResults(filteredResults);
-}, [filter, todo, searching]);
+}, [filtrar, fazer, searching]);
 
 
 
-const updateTodo=(id)=>{
+const updateFazer=(id)=>{
 setEditingId(id);
 }
 
-const handleCancel=()=>{
+const lidarCancel=()=>{
  setEditingId(null);
  setNewName('');
 
 }
-
-const handleSave=(id)=>{
-    if (newName.trim() ==! '' || newName.trim().length > 3) {
-        const updatedTodo = todo.map((todo)=>{
-            if (todo.id === id) {
-                return {...todo, name: newName}
+const lidarSave = (id) => {
+    if (newName.trim() !== '' && newName.trim().length > 3) {
+        const updatedFazer = fazer.map((fazer) => {
+            if (fazer.id === id) {
+                return { ...fazer, name: newName };
             }
-            return todo;
+            return fazer;
         });
-    
-        setResults(updatedTodo);
+        
+        setFazer(updatedFazer); // Update main state here
         setEditingId(null);
         setNewName('');
-    }else{
-    alert('Please enter a valid todo');
-}
-}
+    } else {
+        alert('Please enter a valid fazer');
+    }
+};
 
 
     return (
@@ -67,7 +66,7 @@ const handleSave=(id)=>{
             className="todo-text"
             type="text"
             value={searching}
-            placeholder="Search a todo"
+            placeholder="Search a fazer"
             onChange={(e) => setSearching(e.target.value)}/>
             </form>
       
@@ -77,17 +76,17 @@ const handleSave=(id)=>{
             <h2 id="list-heading">
                 {results.length} Tasks
             </h2>
-    {results.map((todo) => (
-                <ul role="list" key={todo.id} className="todo-list stack-large stack-exception" aria-labelledby="list-heading">
+    {results.map((fazer) => (
+                <ul role="list" key={fazer.id} className="todo-list stack-large stack-exception" aria-labelledby="list-heading">
                     <li className="todo stack-small" >
                         <div className="stack-small">
                             <div className="c-cb">
-                            <input type="checkbox" checked={todo.completed} onChange={()=>on_check(todo.id)}/>
-                            {editingId === todo.id ? (
+                            <input type="checkbox" checked={fazer.completed} onChange={()=>on_check(fazer.id)}/>
+                            {editingId === fazer.id ? (
                             <form className="stack-small"> 
                             <div className="form-group">
                             <label className="todo-label">
-                            New name for {todo.name}
+                            New name for {fazer.name}
                             </label>
                             <input
                             className="todo-text"
@@ -99,27 +98,27 @@ const handleSave=(id)=>{
                         
                             ):(
                                 <label className="todo-label">
-                                {todo.name}
+                                {fazer.name}
                                 </label>
     
                             )}
                             </div>
                             <div className="btn-group">
-                                {editingId === todo.id ? (
+                                {editingId === fazer.id ? (
                                     <>
-                                <button type="button" className="btn" onClick={()=>handleCancel()}>
+                                <button type="button" className="btn" onClick={()=>lidarCancel()}>
                                  <span>Cancel</span>
                                  </button>
-                                 <button type="button" className="btn btn__primary todo-edit" onClick={()=>handleSave(todo.id)}>
+                                 <button type="button" className="btn btn__primary todo-edit" onClick={()=>lidarSave(fazer.id)}>
                                      <span>Save</span>
                                  </button> 
                                  </>
                                 ):(
                                     <>
-                                    <button type="button" className="btn" onClick={()=>updateTodo(todo.id)}>
+                                    <button type="button" className="btn" onClick={()=>updateFazer(fazer.id)}>
                                     <span>edit</span>
                                 </button>
-                                <button type="button" className="btn btn__danger" onClick={()=>deleteTodo(todo.id)}>
+                                <button type="button" className="btn btn__danger" onClick={()=>deleteFazer(fazer.id)}>
                                     <span>delete</span>
                                 </button> 
                                 </>
@@ -138,4 +137,4 @@ const handleSave=(id)=>{
         }
 
 
-export default ListTodo;
+export default ListFazer;

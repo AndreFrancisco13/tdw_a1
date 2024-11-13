@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 
-function Forms( {add_todo, todo} ) {
+function Forms( {add_fazer, fazer} ) {
 
     const [input, setInput] = useState('');
 
@@ -10,11 +10,11 @@ function Forms( {add_todo, todo} ) {
 
         e.preventDefault();
         if (input.trim() === '' || input.trim().length < 3) {
-            alert('Please enter a valid todo');
+            alert('Please enter a valid fazer');
             return;
         }
-        const newTodo = {id: `todo-${todo.length}`, name: input, completed: false};
-       add_todo(newTodo);
+        const newFazer = {id: `fazer-${fazer.length}`, name: input, completed: false};
+       add_fazer(newFazer);
        setInput('');
     }
 
@@ -24,13 +24,13 @@ function Forms( {add_todo, todo} ) {
     return (
         <form onSubmit={handle_submit}>
         <h2 className="label-wrapper">
-            <label htmlFor="new-todo-input" className="label__lg">
+            <label htmlFor="new-fazer-input" className="label__lg">
             What needs to be done?
             </label>
         </h2>
         <input
             type="text"
-            id="new-todo-input"
+            id="new-fazer-input"
             className="input input__lg"
             name="text"
             autoComplete="off"
