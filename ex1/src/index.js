@@ -9,6 +9,7 @@ import Exercicio3 from './components/exercicio3/App';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import About from './components/about';
 import Home from './components/home'; 
+import Exercicio4 from './components/exercicio4/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
       <Route path="/exercicio1" element={<Exercicio1/>} />
       <Route path="/exercicio2" element={<Exercicio2/>} />
       <Route path="/exercicio3" element={<Exercicio3/>} />
+      <Route path='/exercicio4' element={<Exercicio4/>} />
       <Route path='/about' element={<About />} />
     </Route>
     </Routes>

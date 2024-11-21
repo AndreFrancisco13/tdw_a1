@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import { Provider} from 'react-redux';
-import { store } from './app/store';
+import { store } from '../../app/store';
 import Counter from "./counter";
 
 const Exercicio3 = () => {

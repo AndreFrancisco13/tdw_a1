@@ -19,6 +19,10 @@ reducers:{
     },
     decremented(state, action){
 
+        if (state.value - action.payload <0)
+        {
+            return
+        }
         state.value -= action.payload;
     },
     reset(state){

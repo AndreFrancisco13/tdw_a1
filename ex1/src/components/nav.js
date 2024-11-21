@@ -66,6 +66,9 @@ export default function Nav() {
               <NavLinkStyled to="/exercicio3" > Exercicio 3</NavLinkStyled>
             </NavItem>
             <NavItem >
+              <NavLinkStyled to="/exercicio4" > Exercicio 4</NavLinkStyled>
+            </NavItem>
+            <NavItem >
               <NavLinkStyled to="/about">About</NavLinkStyled>
             </NavItem>
           </NavList>
