@@ -3,13 +3,12 @@ import axios from "axios";
 
 const API_URL = "https://api.thecatapi.com/v1/images/search";
 
-export const fetchCat = createAsyncThunk("cat/fetchCat", async ({limit, page, order, api_key}) => {
+export const fetchCat = createAsyncThunk("cat/fetchCat", async ({limit, page, api_key}) => {
 
     const response= await axios.get( API_URL, { params:
         {
             limit,
             page,
-            order,
             api_key,
         },
     });
@@ -23,7 +22,11 @@ const catSlice= createSlice ({
         status: 'idle',
         error: null,
     },
-    reducers:{},
+    reducers:{
+        clearCats(state){
+            state.cats=[];
+        }
+    },
     extraReducers: (builder)=>{
         builder.addCase(fetchCat.pending, (state)=>{
             state.status='loading';
@@ -40,5 +43,7 @@ const catSlice= createSlice ({
 },
 });
         
-
+export const {clearCats} = catSlice.actions;
 export default catSlice.reducer;
+
+
